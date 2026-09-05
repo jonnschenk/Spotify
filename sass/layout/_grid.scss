@@ -1,0 +1,38 @@
+.spotify__app {
+    display: grid;
+    height: 100vh;
+    padding: 8px;
+    gap: 8px;
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 72px;
+
+    grid-template-areas: 
+    "sidebar__left main sidebar__right"
+    "player__bar player__bar player__bar";
+}
+
+.sidebar__left { 
+    grid-area: sidebar__left;
+}
+
+.main__content { 
+    grid-area: main; 
+}
+
+.sidebar__right { 
+    grid-area: sidebar__right; 
+}
+
+.player__bar { 
+    grid-area: player__bar; 
+}
+
+.sidebar__left,
+.main__content,
+.sidebar__right {
+  background-color: $color-bg-card;
+  border-radius: 8px;
+  overflow-y: auto;
+  padding: 16px;
+}

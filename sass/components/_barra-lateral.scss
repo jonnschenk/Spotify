@@ -1,0 +1,197 @@
+.biblioteca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__texto {
+    font-family: $font-main;
+    font-size: rem(16px);
+    font-weight: 700;
+    color: $color-text-base;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-text-subdued;
+    }
+  }
+
+  &__acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__boton-crear {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: $color-bg-elevated;
+    color: $color-text-base;
+    border: none;
+    border-radius: $radius-pill;
+    padding: 6px 14px;
+    font-size: rem(13px);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $color-bg-card-hover;
+    }
+  }
+
+  &__boton-expandir {
+    @include reset-boton;
+    @include flex-centro;
+    @include circulo(26px);
+    color: $color-text-subdued;
+    font-size: rem(14px);
+    transition: color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      color: $color-text-base;
+      background-color: $color-bg-card-hover;
+    }
+  }
+}
+
+.etiquetas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+
+  &__categoria {
+    background-color: $color-bg-elevated;
+    color: $color-text-base;
+    border: none;
+    border-radius: $radius-pill;
+    padding: 6px 14px;
+    font-family: $font-main;
+    font-size: rem(14px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $color-bg-card-hover;
+    }
+  }
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+
+  &__boton-icono {
+    @include reset-boton;
+    @include flex-centro;
+    color: $color-text-subdued;
+    padding: 8px;
+    border-radius: $radius-full;
+    transition: color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      color: $color-text-base;
+      background-color: $color-bg-card-hover;
+    }
+  }
+
+  &__boton-orden {
+    @include reset-boton;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $color-text-subdued;
+    font-family: $font-main;
+    font-size: rem(14px);
+    font-weight: 500;
+    padding: 6px 8px;
+    border-radius: $radius-sm;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-text-base;
+    }
+  }
+}
+
+.lista-elementos {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.elemento-medio {
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: $color-bg-card-hover;
+
+    .elemento-medio__reproducir {
+      opacity: 1;
+    }
+  }
+
+  &__musica {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  &__portada {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  &__imagen {
+    @include imagen-cubierta;
+    display: block;
+    border-radius: $radius-full;
+    background-color: $color-bg-elevated;
+  }
+
+  &__reproducir {
+    @include flex-centro;
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-full;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: $color-text-base;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__titulo {
+    @include truncar-texto;
+    font-family: $font-main;
+    font-size: rem(15px);
+    font-weight: 600;
+    color: $color-text-base;
+  }
+
+  &__subtitulo {
+    font-family: $font-main;
+    font-size: rem(13px);
+    color: $color-text-subdued;
+  }
+}

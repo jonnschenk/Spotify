@@ -1,0 +1,147 @@
+.reproductor {
+  grid-area: reproductor;
+  background-color: $color-bg-card;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+
+  &__izquierda {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 30%;
+    min-width: 180px;
+  }
+
+  &__portada {
+    @include imagen-cubierta(56px, 56px);
+    border-radius: $radius-sm;
+    background-color: $color-bg-elevated;
+  }
+
+  &__detalles {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: hidden;
+  }
+
+  &__titulo {
+    font-family: $font-main;
+    font-size: rem(14px);
+    font-weight: 600;
+    color: $color-text-base;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__artista {
+    @include truncar-texto;
+    font-family: $font-main;
+    font-size: rem(11px);
+    color: $color-text-subdued;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-text-base;
+      text-decoration: underline;
+    }
+  }
+
+  &__centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 40%;
+    max-width: 722px;
+  }
+
+  &__controles {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__progreso {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  &__tiempo {
+    font-family: $font-main;
+    font-size: rem(11px);
+    color: $color-text-subdued;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  &__derecha {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    width: 30%;
+    min-width: 180px;
+  }
+
+  &__volumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__barra {
+    position: relative;
+    height: 4px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+
+    &--volumen {
+      width: 90px;
+    }
+
+    &:hover .reproductor__relleno {
+      background-color: #1db954;
+    }
+  }
+
+  &__relleno {
+    height: 100%;
+    width: 35%;
+    background-color: $color-text-base;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+  }
+
+  &__boton {
+    @include reset-boton;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &--atenuado {
+      @extend %boton-atenuado;
+    }
+
+    &--reproducir {
+      @include circulo(32px);
+      background-color: $color-text-base;
+      color: #000;
+      transition: transform 0.1s ease;
+
+      &:hover {
+        transform: scale(1.06);
+      }
+    }
+  }
+}

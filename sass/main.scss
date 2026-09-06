@@ -1,13 +1,11 @@
 @import "./abstracts/mixins";
 @import "./abstracts/variables";
+@import "./abstracts/placeholders";
 
 @import "./base/reset";
 
-@import "./components/buttons";
-@import "./components/cards";
-@import "./components/player";
-@import "./components/siderleft";
+@import "./components/barra-lateral";
+@import "./components/reproductor";
+@import "./components/principal";
 
 @import "./layout/grid";
-@import "./layout/header";
-

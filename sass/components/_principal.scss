@@ -1,0 +1,277 @@
+.principal {
+  @extend %panel;
+  grid-area: principal;
+  background-color: #121212;
+  position: relative;
+  min-width: 0;
+
+  &__cabecera {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    padding: 24px;
+    background: linear-gradient(180deg, #1f3b2b 0%, #16291e 100%);
+    min-height: 240px;
+  }
+
+  &__portada {
+    @include imagen-cubierta(192px, 192px);
+    border-radius: $radius-sm;
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  &__detalles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: $color-text-base;
+  }
+
+  &__tipo {
+    font-size: rem(13px);
+    font-weight: 700;
+  }
+
+  &__titulo {
+    font-size: rem(64px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin: 4px 0;
+  }
+
+  &__metadatos {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: rem(13px);
+    color: $color-text-subdued;
+  }
+
+  &__artista--destacado {
+    color: $color-text-base;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__cuerpo {
+    padding: 24px;
+    background: linear-gradient(180deg, rgba(22, 41, 30, 0.6) 0%, #121212 250px);
+  }
+
+  &__acciones {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  &__acciones-izquierda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__boton-reproducir {
+    @include circulo(56px);
+    @include flex-centro;
+    border: none;
+    background-color: #1db954;
+    color: #000;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+
+    &:hover {
+      transform: scale(1.04);
+      background-color: #1ed760;
+    }
+  }
+
+  &__boton {
+    @include reset-boton;
+
+    &--atenuado {
+      @extend %boton-atenuado;
+    }
+  }
+
+  &__boton-vista {
+    @include reset-boton;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $color-text-subdued;
+    font-size: rem(13px);
+
+    &:hover {
+      color: $color-text-base;
+    }
+  }
+
+  &__creditos {
+    margin: 32px 0;
+    font-size: rem(12px);
+    color: $color-text-subdued;
+    line-height: 1.6;
+  }
+}
+
+.tabla-pistas {
+  display: flex;
+  flex-direction: column;
+
+  &__encabezado {
+    display: grid;
+    grid-template-columns: 16px 1fr 50px;
+    gap: 16px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: $color-text-subdued;
+    font-size: rem(13px);
+    margin-bottom: 8px;
+  }
+
+  &__fila {
+    display: grid;
+    grid-template-columns: 16px 1fr 50px;
+    gap: 16px;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: $radius-sm;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+
+      .tabla-pistas__num {
+        display: none;
+      }
+
+      .tabla-pistas__play-hover {
+        display: flex;
+      }
+    }
+
+    &--activa .tabla-pistas__nombre {
+      color: #1db954;
+    }
+  }
+
+  &__indice {
+    @include flex-centro;
+    position: relative;
+  }
+
+  &__num {
+    font-size: rem(14px);
+    color: #1db954;
+  }
+
+  &__play-hover {
+    @include reset-boton;
+    display: none;
+    color: $color-text-base;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__nombre {
+    font-size: rem(15px);
+    font-weight: 500;
+    color: $color-text-base;
+  }
+
+  &__artistas {
+    font-size: rem(13px);
+    color: $color-text-subdued;
+  }
+
+  &__tiempo {
+    font-size: rem(13px);
+    color: $color-text-subdued;
+    text-align: right;
+  }
+}
+
+.discografia {
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  &__titulo {
+    font-size: rem(22px);
+    font-weight: 700;
+    color: $color-text-base;
+  }
+
+  &__enlace {
+    font-size: rem(13px);
+    font-weight: 700;
+    color: $color-text-subdued;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__rejilla {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+
+    @include responsive("tablet") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.tarjeta-album {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #181818;
+  padding: 12px;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #282828;
+  }
+
+  &__contenedor-img {
+    width: 100%;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    margin-bottom: 10px;
+  }
+
+  &__img {
+    @include imagen-cubierta;
+    border-radius: $radius-sm;
+  }
+
+  &__titulo {
+    @include truncar-texto;
+    font-size: rem(14px);
+    font-weight: 700;
+    color: $color-text-base;
+    margin-bottom: 4px;
+  }
+
+  &__subtitulo {
+    font-size: rem(12px);
+    color: $color-text-subdued;
+  }
+}

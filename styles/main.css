@@ -547,6 +547,20 @@ body, html {
   text-align: right;
 }
 
+.principal__enlace-legal {
+  display: inline-block;
+  margin-right: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.principal__enlace-legal:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 .discografia__cabecera {
   display: flex;
   align-items: center;
@@ -588,22 +602,29 @@ body, html {
   padding: 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 .tarjeta-album:hover {
   background-color: #282828;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+.tarjeta-album:hover .tarjeta-album__img {
+  transform: scale(1.03);
 }
 .tarjeta-album__contenedor-img {
   width: 100%;
   aspect-ratio: 1;
   flex-shrink: 0;
   margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 4px;
 }
 .tarjeta-album__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
+  transition: transform 0.2s ease;
 }
 .tarjeta-album__titulo {
   white-space: nowrap;

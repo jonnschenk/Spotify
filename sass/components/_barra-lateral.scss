@@ -168,7 +168,7 @@
     position: absolute;
     inset: 0;
     border-radius: $radius-full;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: $color-overlay-scrim;
     color: $color-text-base;
     opacity: 0;
     transition: opacity 0.2s ease;

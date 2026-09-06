@@ -5,12 +5,13 @@ $color-bg-app:        #000000; // Fondo del body y reproductor
 $color-bg-card:       #121212; // Fondo de las 3 columnas principales
 $color-bg-card-hover: #1f1f1f; // Hover en filas y tarjetas
 $color-bg-elevated:   #242424; // Píldoras, chips y buscador
+$color-bg-tile:       #181818; // Fondo de tarjetas de álbum
 
 // ============================================
 // COLORES DE MARCA Y ACENTOS
 // ============================================
-$color-primary:       #1ed760; // Verde oficial de Spotify
-$color-primary-hover: #1fdf64; // Verde más brillante para hover
+$color-primary:       #1db954; // Verde oficial de Spotify
+$color-primary-hover: #1ed760; // Verde más brillante para hover
 
 // ============================================
 // TEXTO E ICONOS
@@ -24,6 +25,21 @@ $color-text-muted:    #6a6a6a; // Iconos inactivos o números de lista
 // ============================================
 $color-border:        #282828; // Divisores tenues
 $color-slider-bg:     #4d4d4d; // Fondo de las barras de progreso/volumen
+
+// ============================================
+// OVERLAYS Y SOMBRAS
+// ============================================
+$color-overlay-hover: rgba(255, 255, 255, 0.1); // Hover sutil sobre filas
+$color-overlay-scrim: rgba(0, 0, 0, 0.6);       // Capa oscura sobre imágenes
+$color-shadow:        rgba(0, 0, 0, 0.5);       // Sombra de portadas grandes
+$color-text-shadow:   rgba(0, 0, 0, 0.8);       // Sombra de texto sobre imágenes
+
+// ============================================
+// GRADIENTES
+// ============================================
+$color-gradient-start: #1f3b2b; // Inicio del degradado de cabecera
+$color-gradient-mid:   #16291e; // Fin del degradado de cabecera
+$color-gradient-fade:  rgba(22, 41, 30, 0.6); // Degradado hacia el cuerpo
 
 // ============================================
 // TIPOGRAFÍAS Y ESPACIADOS

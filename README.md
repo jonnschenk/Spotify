@@ -34,6 +34,8 @@ El CSS compilado se incluye para que el sitio se pueda publicar directamente en 
 
 En la configuración del repositorio, selecciona la rama que contiene el proyecto y la carpeta raíz (`/`) como origen de GitHub Pages.
 
+Ver sitio publicado: [jonnschenk.github.io/Spotify/](https://jonnschenk.github.io/Spotify/)
+
 ## Créditos y alcance
 
 Proyecto de práctica no oficial, sin afiliación con Spotify, GIMS ni los demás artistas mencionados. Las imágenes y marcas pertenecen a sus respectivos titulares. Verifica que tienes derecho a publicar los recursos incluidos antes de hacer público el repositorio.

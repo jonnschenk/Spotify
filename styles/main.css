@@ -1,0 +1,945 @@
+.barra-lateral, .principal {
+  background-color: #121212;
+  border-radius: 8px;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.principal__boton--atenuado, .reproductor__boton--atenuado {
+  color: #b3b3b3;
+  transition: color 0.2s ease;
+}
+.principal__boton--atenuado:hover, .reproductor__boton--atenuado:hover {
+  color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100vh;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.biblioteca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.biblioteca__texto {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.biblioteca__texto:hover {
+  color: #b3b3b3;
+}
+.biblioteca__acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.biblioteca__boton-crear {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #242424;
+  color: #ffffff;
+  border: none;
+  border-radius: 500px;
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.biblioteca__boton-crear:hover {
+  background-color: #1f1f1f;
+}
+.biblioteca__boton-expandir {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #b3b3b3;
+  font-size: 0.875rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.biblioteca__boton-expandir:hover {
+  color: #ffffff;
+  background-color: #1f1f1f;
+}
+
+.etiquetas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.etiquetas__categoria {
+  background-color: #242424;
+  color: #ffffff;
+  border: none;
+  border-radius: 500px;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.etiquetas__categoria:hover {
+  background-color: #1f1f1f;
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+}
+.buscador__boton-icono {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #b3b3b3;
+  padding: 8px;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.buscador__boton-icono:hover {
+  color: #ffffff;
+  background-color: #1f1f1f;
+}
+.buscador__boton-orden {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b3b3b3;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+.buscador__boton-orden:hover {
+  color: #ffffff;
+}
+
+.lista-elementos {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.elemento-medio {
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.elemento-medio:hover {
+  background-color: #1f1f1f;
+}
+.elemento-medio:hover .elemento-medio__reproducir {
+  opacity: 1;
+}
+.elemento-medio__musica {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+}
+.elemento-medio__portada {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.elemento-medio__imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  background-color: #242424;
+}
+.elemento-medio__reproducir {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.elemento-medio__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.elemento-medio__titulo {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+.elemento-medio__subtitulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #b3b3b3;
+}
+
+.reproductor {
+  grid-area: reproductor;
+  background-color: #121212;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.reproductor__izquierda {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 30%;
+  min-width: 0;
+}
+.reproductor__portada {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #242424;
+}
+.reproductor__detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+}
+.reproductor__titulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+}
+.reproductor__titulo:hover {
+  text-decoration: underline;
+}
+.reproductor__artista {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.6875rem;
+  color: #b3b3b3;
+  cursor: pointer;
+}
+.reproductor__artista:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.reproductor__centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 40%;
+  max-width: 722px;
+}
+.reproductor__controles {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.reproductor__progreso {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.reproductor__tiempo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.6875rem;
+  color: #b3b3b3;
+  min-width: 32px;
+  text-align: center;
+}
+.reproductor__derecha {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 30%;
+  min-width: 0;
+}
+.reproductor__volumen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reproductor__barra {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  background-color: #4d4d4d;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.reproductor__barra--volumen {
+  width: 90px;
+}
+.reproductor__barra:hover .reproductor__relleno {
+  background-color: #1db954;
+}
+@media (max-width: 1024px) {
+  .reproductor .reproductor__derecha {
+    gap: 8px;
+  }
+  .reproductor .reproductor__barra--volumen {
+    width: 64px;
+  }
+}
+@media (max-width: 680px) {
+  .reproductor .reproductor {
+    gap: 12px;
+    padding: 0 8px;
+  }
+  .reproductor .reproductor__izquierda {
+    flex: 0 1 30%;
+    gap: 8px;
+  }
+  .reproductor .reproductor__portada {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  .reproductor .reproductor__detalles {
+    min-width: 0;
+  }
+  .reproductor .reproductor__centro {
+    flex: 1 1 55%;
+    min-width: 0;
+  }
+  .reproductor .reproductor__controles {
+    gap: 10px;
+  }
+  .reproductor .reproductor__derecha {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .reproductor .reproductor {
+    gap: 8px;
+  }
+  .reproductor .reproductor__izquierda {
+    flex-basis: 38%;
+  }
+  .reproductor .reproductor__portada {
+    width: 40px;
+    height: 40px;
+  }
+  .reproductor .reproductor__izquierda > .reproductor__boton {
+    display: none;
+  }
+  .reproductor .reproductor__centro {
+    flex-basis: 62%;
+    gap: 4px;
+  }
+  .reproductor .reproductor__controles {
+    gap: 8px;
+  }
+  .reproductor .reproductor__controles .reproductor__boton--atenuado:first-child, .reproductor .reproductor__controles .reproductor__boton--atenuado:last-child {
+    display: none;
+  }
+  .reproductor .reproductor__progreso {
+    gap: 4px;
+  }
+  .reproductor .reproductor__tiempo {
+    min-width: 28px;
+    font-size: 0.625rem;
+  }
+}
+.reproductor__relleno {
+  height: 100%;
+  width: 35%;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+.reproductor__boton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.reproductor__boton--reproducir {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000;
+  transition: transform 0.1s ease;
+}
+.reproductor__boton--reproducir:hover {
+  transform: scale(1.06);
+}
+
+.principal {
+  grid-area: principal;
+  position: relative;
+  min-width: 0;
+}
+.principal__cabecera {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 24px;
+  background: linear-gradient(180deg, #1f3b2b 0%, #16291e 100%);
+  min-height: 240px;
+}
+.principal__portada {
+  width: 192px;
+  height: 192px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+}
+.principal__detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #ffffff;
+}
+.principal__tipo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+.principal__titulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 4px 0;
+}
+.principal__metadatos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #b3b3b3;
+}
+.principal__artista--destacado {
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.principal__artista--destacado:hover {
+  text-decoration: underline;
+}
+.principal__cuerpo {
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(22, 41, 30, 0.6) 0%, #121212 250px);
+}
+.principal__acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.principal__acciones-izquierda {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.principal__boton-reproducir {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #1db954;
+  color: #000;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+.principal__boton-reproducir:hover {
+  transform: scale(1.04);
+  background-color: #1ed760;
+}
+.principal__boton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.principal__boton-vista {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b3b3b3;
+  font-size: 0.8125rem;
+}
+.principal__boton-vista:hover {
+  color: #ffffff;
+}
+.principal__creditos {
+  margin: 32px 0;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+  line-height: 1.6;
+}
+
+.tabla-pistas {
+  display: flex;
+  flex-direction: column;
+}
+.tabla-pistas__encabezado {
+  display: grid;
+  grid-template-columns: 16px 1fr 50px;
+  gap: 16px;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #b3b3b3;
+  font-size: 0.8125rem;
+  margin-bottom: 8px;
+}
+.tabla-pistas__fila {
+  display: grid;
+  grid-template-columns: 16px 1fr 50px;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tabla-pistas__fila:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.tabla-pistas__fila:hover .tabla-pistas__num {
+  display: none;
+}
+.tabla-pistas__fila:hover .tabla-pistas__play-hover {
+  display: flex;
+}
+.tabla-pistas__fila--activa .tabla-pistas__nombre {
+  color: #1db954;
+}
+.tabla-pistas__indice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tabla-pistas__num {
+  font-size: 0.875rem;
+  color: #1db954;
+}
+.tabla-pistas__play-hover {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: none;
+  color: #ffffff;
+}
+.tabla-pistas__info {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tabla-pistas__nombre {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+.tabla-pistas__artistas {
+  font-size: 0.8125rem;
+  color: #b3b3b3;
+}
+.tabla-pistas__tiempo {
+  font-size: 0.8125rem;
+  color: #b3b3b3;
+  text-align: right;
+}
+
+.principal__enlace-legal {
+  display: inline-block;
+  margin-right: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.principal__enlace-legal:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.discografia__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.discografia__titulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.discografia__enlace {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #b3b3b3;
+  text-decoration: none;
+}
+.discografia__enlace:hover {
+  text-decoration: underline;
+}
+.discografia__rejilla {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .discografia__rejilla {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tarjeta-album {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #181818;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.tarjeta-album:hover {
+  background-color: #282828;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+.tarjeta-album:hover .tarjeta-album__img {
+  transform: scale(1.03);
+}
+.tarjeta-album__contenedor-img {
+  width: 100%;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.tarjeta-album__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+.tarjeta-album__titulo {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.tarjeta-album__subtitulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+}
+
+.panel-reproduccion {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.panel-reproduccion__cabecera {
+  padding-bottom: 16px;
+}
+.panel-reproduccion__titulo-superior {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.panel-reproduccion__contenido {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.panel-reproduccion__portada-contenedor {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.panel-reproduccion__portada {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.panel-reproduccion__info-pista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.panel-reproduccion__textos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.panel-reproduccion__cancion {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.panel-reproduccion__artistas {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.panel-reproduccion__btn-guardar {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #b3b3b3;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+.panel-reproduccion__btn-guardar:hover {
+  color: #ffffff;
+  transform: scale(1.06);
+}
+.panel-reproduccion__seccion-titulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+}
+.panel-reproduccion__rejilla-videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tarjeta-video {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  min-width: 0;
+}
+.tarjeta-video__miniatura {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #282828;
+  margin-bottom: 8px;
+}
+.tarjeta-video__miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tarjeta-video__titulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tarjeta-video__subtitulo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tarjeta-artista {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #282828;
+}
+.tarjeta-artista__fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tarjeta-artista__etiqueta {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.spotify__app {
+  display: grid;
+  height: 100dvh;
+  padding: 8px;
+  gap: 8px;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr) minmax(220px, 1fr);
+  grid-template-rows: minmax(0, 1fr) 72px;
+  grid-template-areas: "lateral-izquierda principal lateral-derecha" "reproductor reproductor reproductor";
+}
+
+.barra-lateral--izquierda {
+  grid-area: lateral-izquierda;
+}
+.barra-lateral--derecha {
+  grid-area: lateral-derecha;
+}
+
+@media (max-width: 1024px) {
+  .spotify__app {
+    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 2fr);
+    grid-template-areas: "lateral-izquierda principal" "reproductor reproductor";
+  }
+  .barra-lateral--derecha {
+    display: none;
+  }
+}
+@media (max-width: 680px) {
+  .spotify__app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 64px;
+    grid-template-areas: "principal" "reproductor";
+    padding: 4px;
+    gap: 4px;
+  }
+  .barra-lateral--izquierda {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .spotify__app {
+    grid-template-rows: minmax(0, 1fr) 60px;
+  }
+  .principal {
+    padding: 0;
+  }
+  .principal__cabecera {
+    align-items: flex-end;
+    gap: 16px;
+    min-height: 0;
+    padding: 20px 16px;
+  }
+  .principal__portada {
+    width: 112px;
+    height: 112px;
+    flex-shrink: 0;
+  }
+  .principal__titulo {
+    font-size: clamp(2rem, 10vw, 3rem);
+    letter-spacing: -1px;
+    overflow-wrap: anywhere;
+  }
+  .principal__metadatos {
+    flex-wrap: wrap;
+  }
+  .principal__cuerpo {
+    padding: 16px;
+  }
+  .discografia__rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .tarjeta-album {
+    padding: 8px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

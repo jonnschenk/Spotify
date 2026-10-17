@@ -1,0 +1,12 @@
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
+@import "./abstracts/placeholders";
+
+@import "./base/reset";
+
+@import "./components/barra-lateral";
+@import "./components/reproductor";
+@import "./components/principal";
+@import "./components/panel-reproduccion";
+
+@import "./layout/grid";

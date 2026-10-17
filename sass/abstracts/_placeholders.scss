@@ -1,0 +1,17 @@
+// Panel de fondo compartido por las columnas del layout
+%panel {
+  background-color: $color-bg-card;
+  border-radius: $radius-md;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+// Botón secundario que se ilumina al pasar el cursor
+%boton-atenuado {
+  color: $color-text-subdued;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-text-base;
+  }
+}

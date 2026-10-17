@@ -1,0 +1,14 @@
+{
+  "name": "spotify-clone",
+  "version": "1.0.0",
+  "description": "Clon de la interfaz de Spotify maquetado con HTML y Sass",
+  "private": true,
+  "scripts": {
+    "sass:build": "sass sass/main.scss styles/main.css --style=expanded",
+    "sass:watch": "sass sass/main.scss styles/main.css --style=expanded --watch",
+    "sass:compressed": "sass sass/main.scss styles/main.css --style=compressed --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.8"
+  }
+}

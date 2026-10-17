@@ -1,0 +1,100 @@
+.spotify__app {
+  display: grid;
+  height: 100dvh;
+  padding: 8px;
+  gap: 8px;
+
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr) minmax(220px, 1fr);
+  grid-template-rows: minmax(0, 1fr) 72px;
+
+  grid-template-areas:
+    "lateral-izquierda principal lateral-derecha"
+    "reproductor reproductor reproductor";
+}
+
+.barra-lateral {
+  @extend %panel;
+
+  &--izquierda {
+    grid-area: lateral-izquierda;
+  }
+
+  &--derecha {
+    grid-area: lateral-derecha;
+  }
+}
+
+@media (max-width: 1024px) {
+  .spotify__app {
+    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 2fr);
+    grid-template-areas:
+      "lateral-izquierda principal"
+      "reproductor reproductor";
+  }
+
+  .barra-lateral--derecha {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .spotify__app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 64px;
+    grid-template-areas:
+      "principal"
+      "reproductor";
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .barra-lateral--izquierda {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotify__app {
+    grid-template-rows: minmax(0, 1fr) 60px;
+  }
+
+  .principal {
+    padding: 0;
+
+    &__cabecera {
+      align-items: flex-end;
+      gap: 16px;
+      min-height: 0;
+      padding: 20px 16px;
+    }
+
+    &__portada {
+      width: 112px;
+      height: 112px;
+      flex-shrink: 0;
+    }
+
+    &__titulo {
+      font-size: clamp(2rem, 10vw, 3rem);
+      letter-spacing: -1px;
+      overflow-wrap: anywhere;
+    }
+
+    &__metadatos {
+      flex-wrap: wrap;
+    }
+
+    &__cuerpo {
+      padding: 16px;
+    }
+  }
+
+  .discografia__rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tarjeta-album {
+    padding: 8px;
+  }
+}
